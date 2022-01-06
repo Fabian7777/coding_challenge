@@ -1,0 +1,127 @@
+<div class="profile-header">
+    <div class="profile-header-cover"></div>
+    <div class="profile-header-content">
+        <div class="profile-header-img">
+            <img src="https://media-exp1.licdn.com/dms/image/C4D03AQElEiOdQpCO0g/profile-displayphoto-shrink_400_400/0/1636758877826?e=1646870400&v=beta&t=DM2Ue579KaoQWDRWfV95DiecEzYBDNOxKNQ6Cmady0U" alt="" />
+        </div>
+        <div class="profile-header-info">
+            <h4 class="m-t-sm">
+                Mindforce Hiring Test | Coding Challenge – Front-end Web (ReactJS)
+            </h4>
+            <p class="m-b-sm">
+                Developer:
+                <strong>Justus Mwangi</strong>
+            </p>
+            <a href="https://www.linkedin.com/in/justus-mwangi-4454a9123" class="btn btn-xs btn-primary mb-4">
+                View linkedin Profile
+            </a>
+        </div>
+    </div>
+
+    <ul class="profile-header-tab nav nav-tabs">
+        <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link" data-toggle="tab">About me</a>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link" data-toggle="tab">Projects</a>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link active show" data-toggle="tab">Coding Challenge</a>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link" data-toggle="tab">Ambitions</a>
+        </li>
+
+    </ul>
+</div>
+
+<div class="profile-container">
+
+
+    <div class="row row-space-20">
+        <div class="col-md-8">
+
+            <div class="tab-content p-0">
+
+                <div class="tab-pane active show" id="profile-photos">
+                    <div class="m-b-10">
+                        <b>
+                          Images Loaded : ({{imagesList.length | number }}
+                            <small>images</small>)
+                          </b>
+                    </div>
+                    <ul class="img-grid-list">
+
+                        <li class="li-custom padding-0" *ngFor="let img of imagesDisplayList; index as i">
+                            <div class="data-content" (click)="onSelectedClick($event, i)">
+
+                                <a href="javascript:void(0)">
+
+
+                                    <img src="{{img?.url}}" alt="" class="img-portrait even-number" *ngIf="isEven(i) == true" />
+                                    <img src="{{img?.url}}" alt="" class="img-portrait" *ngIf="isEven(i) == false" />
+
+                                </a>
+
+                                <p class="details-txt">
+                                    <label #lblEditable class="title_label readonly-label">{{img?.title}}</label>
+                                    <input #titleEditable type="text" class="form-control form-control-sm editable-label" placeholder="Enter Title" [(ngModel)]="img[i]" value="{{img?.title}}" (keyup.enter)="onEnterKeyPressed(i)" (keyup)="checkTitleChange(i)">
+                                </p>
+                                <div class="details-txt display-date">
+                                    {{today | date:'yyyy-MM-dd'}}
+                                </div>
+
+                                <div>
+                                    <button #btnConfirm class="btn btn-primary btn-block imgButton" (click)="confirmUpdateClicked(i)" disabled>Confirm Update</button>
+                                    <button #btnReset class="btn btn-danger btn-block imgButton mt-1" (click)="ResetBtnClicked(i)" disabled>Reset</button>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+            </div>
+
+            <div class="text-center fixed-bottom m-3" *ngIf="imagesDisplayList.length > 0">
+                <span class="spinner-border text-primary " role="status" *ngIf="moreloaded == true"></span>
+                <br>
+                <button class="btn btn-primary btn-block flatbutton ml-2" (click)="loadMore()">Load More images</button>
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-4 hidden-xs hidden-sm">
+            <ul class="profile-info-list">
+                <li class="title">PERSONAL INFORMATION</li>
+                <li>
+                    <div class="field">Role:</div>
+                    <div class="value">
+                        Full Stack Developer
+                    </div>
+                </li>
+                <li>
+                    <div class="field">Country:</div>
+                    <div class="value">Kenya</div>
+                </li>
+                <li>
+                    <div class="field">Email:</div>
+                    <div class="value">
+                        <a href="mailto:mwangijustus12@gmail.com" target="_blank">mwangijustus12@gmail.com</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="field">Contact:</div>
+                    <div class="value">(+254) 792 898 262</div>
+                </li>
+
+
+
+            </ul>
+        </div>
+    </div>
+</div>
